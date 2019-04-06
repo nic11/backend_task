@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    Anon: {{ current_user.is_anonymous }}<br>
+    Activated: {{ current_user.is_active }}<br>
+    Username: {{ current_user.username }}<br>
+    <!-- <h1>Hi, {{ current_user.username }}!</h1> -->
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    Hello, {{ current_user.username }}! Welcome back to the no-judgement zone<br><br>
+
+    <video src="https://i.imgur.com/TtQkt1E.mp4" autoplay="1" loop controls></video>
+
+    <script>
+        console.log(document.getElementsByTagName('video')[0].play());
+    </script>
+
+{% endblock %}

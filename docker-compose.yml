@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  flask:
+    build: flask
+    environment:
+      MONGO_HOST: mongo
+      MONGO_DB: dmler
+      RABBIT_HOST: rabbit
+      RABBIT_PORT: '5672'
+    ports:
+      - '127.0.0.1:8080:8080'
+    secrets:
+      - flask_key
+  
+  mailer:
+    build: mailer
+    environment:
+      RABBIT_HOST: rabbit
+      RABBIT_PORT: '5672'
+    secrets:
+      - mailer_smtp_creds
+
+  mongo:
+    image: 'mongo:3.4.20-jessie'
+
+  rabbit:
+    image: 'rabbitmq:3-management'
+    # ports:
+    #   - '127.0.0.1:15672:15672' # management
+
+secrets:
+  flask_key:
+    file: secrets/flask_key
+  mailer_smtp_creds:
+    file: secrets/mailer_smtp_creds
